@@ -22,6 +22,9 @@ public class CarControl : MonoBehaviour
     public Light LeftBrakeLight;
     public Light RightBrakeLight;
 
+    // UI
+    private UIManager uiManager;
+
     private void Awake()
     {
         // Bind input actions from Input System
@@ -54,6 +57,9 @@ public class CarControl : MonoBehaviour
         wheels = GetComponentsInChildren<WheelControl>();
         LeftBrakeLight.enabled = false;
         RightBrakeLight.enabled = false;
+
+        // Find the UIManager in the scene
+        uiManager = FindObjectOfType<UIManager>();
     }
 
     public float GetCurrentSpeed()
@@ -61,6 +67,7 @@ public class CarControl : MonoBehaviour
         float forwardSpeed = Vector3.Dot(transform.forward, rigidBody.linearVelocity);
         return Mathf.Abs(forwardSpeed * 3.6f); // Convert to km/h for display
     }
+
     void FixedUpdate()
     {
         // Separate input handling for acceleration/braking and steering
@@ -120,7 +127,14 @@ public class CarControl : MonoBehaviour
                 wheel.WheelCollider.motorTorque = 0;
             }
         }
+
+        // Calculate the current speed
+        float currentSpeed = GetCurrentSpeed();
+
+        // Pass the current speed to the UIManager
+        if (uiManager != null)
+        {
+            uiManager.UpdateSpeed(currentSpeed);
+        }
     }
-
-
 }
