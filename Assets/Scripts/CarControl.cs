@@ -9,6 +9,7 @@ public class CarControl : MonoBehaviour
     public float steeringRange = 30;
     public float steeringRangeAtMaxSpeed = 10;
     public Vector3 centerOfMass;
+    public float currentSpeed = 0f;
 
     private WheelControl[] wheels;
     private Rigidbody rigidBody;
@@ -59,13 +60,13 @@ public class CarControl : MonoBehaviour
         RightBrakeLight.enabled = false;
 
         // Find the UIManager in the scene
-        uiManager = FindObjectOfType<UIManager>();
+        uiManager = FindFirstObjectByType<UIManager>();
     }
 
     public float GetCurrentSpeed()
     {
         float forwardSpeed = Vector3.Dot(transform.forward, rigidBody.linearVelocity);
-        return Mathf.Abs(forwardSpeed * 3.6f); // Convert to km/h for display
+        return Mathf.Round(Mathf.Abs(forwardSpeed * 3.6f) * 10f) / 10f; // Convert to km/h and round to 1 decimal place
     }
 
     void FixedUpdate()
@@ -128,13 +129,9 @@ public class CarControl : MonoBehaviour
             }
         }
 
-        // Calculate the current speed
-        float currentSpeed = GetCurrentSpeed();
+        // Update current speed
+        currentSpeed = GetCurrentSpeed();
 
-        // Pass the current speed to the UIManager
-        if (uiManager != null)
-        {
-            uiManager.UpdateSpeed(currentSpeed);
-        }
+       
     }
 }

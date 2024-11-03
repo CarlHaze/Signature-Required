@@ -1,0 +1,57 @@
+.panel {
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu {
+    background-color: rgba(176, 176, 176, 0.57);
+    width: 400px;
+    height: auto;
+    align-items: stretch;
+    max-height: 400px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.75);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 2px;
+}
+
+.unity-button {
+    background-color: rgb(124, 138, 118);
+    color: white;
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 45px;
+    padding: 10px 20px;
+    margin: 10px;
+    width: 300px;
+    height: 40px;
+    font-size: 16px;
+    cursor: pointer;
+    flex-grow: 1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.unity-button:hover {
+    background-color: rgb(107, 143, 102);
+    transform: ;
+    box-shadow: 4px 4px 10px rgba(77, 90, 74, 0.5);
+    color: rgb(255, 255, 255);
+}
+
+.unity-text-element {
+    flex-grow: 1;
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&guid=de41d693b99884c48a7ba74fcab05941&type=3#NotInter-Regular");
+    -unity-font-style: bold;
+    font-size: 35px;
+    -unity-text-align: middle-center;
+    text-overflow: ellipsis;
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: rgba(0, 0, 0, 0.75);
+    text-shadow: 5px 2px 0 rgb(0, 0, 0);
+}
