@@ -59,7 +59,7 @@ public class CarControl : MonoBehaviour
         RightBrakeLight.enabled = false;
 
         // Find the UIManager in the scene
-        uiManager = FindObjectOfType<UIManager>();
+        uiManager = FindFirstObjectByType<UIManager>();
     }
 
     public float GetCurrentSpeed()
@@ -131,10 +131,10 @@ public class CarControl : MonoBehaviour
         // Calculate the current speed
         float currentSpeed = GetCurrentSpeed();
 
-        // Pass the current speed to the UIManager
-        if (uiManager != null)
-        {
-            uiManager.UpdateSpeed(currentSpeed);
-        }
+        //// Pass the current speed to the UIManager
+        //if (uiManager != null)
+        //{
+        //    uiManager.UpdateSpeed(currentSpeed);
+        //}
     }
 }
