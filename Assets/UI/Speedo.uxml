@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/speedo.uss?fileID=7433441132597879392&amp;guid=2ed6ef092130d3c409e8e5cf3eaf5b64&amp;type=3#speedo" />
+    <Speedo name="Speedo" progress="32.65" style="width: 182px; height: 200px; position: absolute; bottom: 1%; left: 1%;">
+        <ui:Label name="CurrentSpeedLabel" data-source-type="CarControl, Assembly-CSharp" data-source-path="currentSpeed">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="currentSpeed" data-source-type="CarControl, Assembly-CSharp" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:Label>
+        <Bindings>
+            <ui:DataBinding property="progress" data-source-path="currentSpeed" data-source-type="CarControl, Assembly-CSharp" binding-mode="ToTarget" />
+        </Bindings>
+    </Speedo>
+</ui:UXML>

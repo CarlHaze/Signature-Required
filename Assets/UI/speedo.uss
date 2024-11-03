@@ -1,0 +1,4 @@
+#Speedo {
+	--fill-color: #F07900;
+	--background-color: #2C8AFB;
+}

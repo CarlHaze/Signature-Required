@@ -3,9 +3,9 @@
     <ui:VisualElement name="Panel" class="panel" style="flex-grow: 1;">
         <ui:VisualElement name="Menu" class="menu" style="flex-grow: 1; max-height: 460px; width: 350px;">
             <ui:Label text="Signature Required" name="Title" style="align-items: center; align-content: auto; align-self: auto; font-size: 31px; -unity-font-style: bold; color: rgb(255, 255, 255);" />
-            <ui:Button text="Play" class="unity-button" style="width: auto;" />
-            <ui:Button text="Load" class="unity-button" />
-            <ui:Button text="Exit" class="unity-button" />
+            <ui:Button text="Play" name="play-button" class="unity-button" style="width: auto;" />
+            <ui:Button text="Load" name="load-button" class="unity-button" />
+            <ui:Button text="Exit" name="quit-button" class="unity-button" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
