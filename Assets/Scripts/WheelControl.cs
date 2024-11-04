@@ -15,11 +15,15 @@ public class WheelControl : MonoBehaviour
     Vector3 position;
     Quaternion rotation;
 
-    // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
         WheelCollider = GetComponent<WheelCollider>();
     }
+    //// Start is called before the first frame update
+    //private void Start()
+    //{
+    //    WheelCollider = GetComponent<WheelCollider>();
+    //}
 
     // FixedUpdate is called at a fixed interval and is used for physics updates
     void FixedUpdate()

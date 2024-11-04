@@ -8,6 +8,13 @@ public class SpeedoController : MonoBehaviour
 
     void Start()
     {
+        // Find the car GameObject by its tag and assign it to the car variable
+        GameObject carObject = GameObject.FindGameObjectWithTag("Car");
+        if (carObject != null)
+        {
+            car = carObject.GetComponent<CarControl>();
+        }
+
         VisualElement root = gameObject.GetComponent<UIDocument>().rootVisualElement;
         root.Q<Speedo>().dataSource = car;
 
@@ -25,3 +32,4 @@ public class SpeedoController : MonoBehaviour
         }
     }
 }
+
