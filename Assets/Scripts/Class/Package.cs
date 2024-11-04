@@ -1,29 +1,14 @@
-using UnityEngine;
-using System.Collections.Generic;
-
 [System.Serializable]
 public class Package
 {
-    public string address;
-    public bool isCollected = false;
-    public bool isDelivered = false;
-    public int numberOfPackages = 1; // Default to 1 since each Package represents one delivery
+    public string address; // The address for delivery
+    public bool isDelivered; // Indicates if the package has been delivered
+    public bool isCollected; // Indicates if the package has been collected
 
     public Package(string address)
     {
         this.address = address;
-    }
-
-    // Method to set the address from a list of pre-written addresses
-    public void SetAddressFromList(List<string> addresses, int index)
-    {
-        if (index >= 0 && index < addresses.Count)
-        {
-            this.address = addresses[index];
-        }
-        else
-        {
-            Debug.LogError("Index out of range");
-        }
+        this.isDelivered = false; // Set initial delivery status
+        this.isCollected = false; // Set initial collection status
     }
 }
