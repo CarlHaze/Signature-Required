@@ -6,7 +6,9 @@ public class DeliveryManager : MonoBehaviour
     public static DeliveryManager Instance { get; private set; }
     public List<Package> packages = new List<Package>();
 
-    // New list to hold loaded addresses
+    [SerializeField] // Use this to expose in Inspector
+    public List<AddressPackage> addressPackages = new List<AddressPackage>(); // Now visible in Inspector
+
     private List<string> loadedAddresses = new List<string>();
 
     private void Awake()
@@ -25,6 +27,7 @@ public class DeliveryManager : MonoBehaviour
     {
         LoadAddresses();
         GeneratePackages();
+        DisplayAddressPackages(); // Call to display address packages on start
     }
 
     private void LoadAddresses()
@@ -34,13 +37,10 @@ public class DeliveryManager : MonoBehaviour
         {
             try
             {
-                // Deserialize the JSON into AddressList object
                 AddressList addressList = JsonUtility.FromJson<AddressList>(addressData.text);
-
-                // Check if addresses were successfully loaded
                 if (addressList != null && addressList.addresses != null && addressList.addresses.Count > 0)
                 {
-                    loadedAddresses = addressList.addresses; // Store loaded addresses
+                    loadedAddresses = addressList.addresses;
                     Debug.Log($"{loadedAddresses.Count} addresses loaded successfully.");
                 }
                 else
@@ -61,20 +61,38 @@ public class DeliveryManager : MonoBehaviour
 
     private void GeneratePackages()
     {
-        // Get base package count range and apply day modifier
         int basePackageCount = Random.Range(15, 21);
         int bonusPackages = DayManager.Instance.GetPackageBonus();
         int totalPackages = basePackageCount + bonusPackages;
 
-        // Ensure the packages list is cleared before adding new packages
-        packages.Clear();
+        addressPackages.Clear(); // Clear previous data
 
-        // Generate the packages
+        // Generate address packages with a random number of packages for each address
         for (int i = 0; i < totalPackages; i++)
         {
-            // Randomly select an address from the loaded addresses
             string address = GetRandomAddress();
-            packages.Add(new Package(address));
+
+            // Check if this address already exists
+            AddressPackage existingAddressPackage = addressPackages.Find(ap => ap.address == address);
+            if (existingAddressPackage != null)
+            {
+                existingAddressPackage.numberOfPackages++; // Increment count
+            }
+            else
+            {
+                // Create new address package with count of 1
+                addressPackages.Add(new AddressPackage(address, 1));
+            }
+        }
+
+        // Generate packages from addressPackages list
+        packages.Clear();
+        foreach (var addressPackage in addressPackages)
+        {
+            for (int j = 0; j < addressPackage.numberOfPackages; j++)
+            {
+                packages.Add(new Package(addressPackage.address));
+            }
         }
 
         Debug.Log($"Generated {packages.Count} packages for {DayManager.Instance.currentDay}");
@@ -85,12 +103,11 @@ public class DeliveryManager : MonoBehaviour
         if (loadedAddresses.Count == 0)
         {
             Debug.LogWarning("No addresses available. Generating fallback address.");
-            return $"Random Address {packages.Count + 1}"; // Fallback address if no addresses available
+            return $"Random Address {packages.Count + 1}";
         }
 
-        // Get a random index from the loaded addresses
         int randomIndex = Random.Range(0, loadedAddresses.Count);
-        return loadedAddresses[randomIndex]; // Return the address of the randomly selected package
+        return loadedAddresses[randomIndex];
     }
 
     public void CollectPackages()
@@ -100,7 +117,6 @@ public class DeliveryManager : MonoBehaviour
             if (!package.isCollected)
             {
                 package.isCollected = true;
-                package.isDelivered = true; // Flag as delivered
                 Debug.Log($"Collected package at address: {package.address}");
             }
         }
@@ -108,13 +124,23 @@ public class DeliveryManager : MonoBehaviour
 
     public void AdvanceDay()
     {
-        DayManager.Instance.NextDay(); // Call NextDay to advance the day
-        GeneratePackages(); // Generate new packages after advancing the day
+        DayManager.Instance.NextDay();
+        GeneratePackages();
+        DisplayAddressPackages(); // Display address packages after advancing the day
+    }
+
+    private void DisplayAddressPackages()
+    {
+        Debug.Log("Address Packages and Counts:");
+        foreach (var addressPackage in addressPackages)
+        {
+            Debug.Log($"Address: {addressPackage.address}, Number of Packages: {addressPackage.numberOfPackages}");
+        }
     }
 }
 
 [System.Serializable]
 public class AddressList
 {
-    public List<string> addresses; // List of addresses
+    public List<string> addresses;
 }

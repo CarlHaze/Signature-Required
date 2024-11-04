@@ -4,10 +4,10 @@ using System.Collections.Generic;
 [System.Serializable]
 public class Package
 {
-    public string address; 
-    public bool isCollected = false; 
-    public bool isDelivered = false; 
-
+    public string address;
+    public bool isCollected = false;
+    public bool isDelivered = false;
+    public int numberOfPackages = 1; // Default to 1 since each Package represents one delivery
 
     public Package(string address)
     {
