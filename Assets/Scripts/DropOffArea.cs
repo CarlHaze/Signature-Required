@@ -5,15 +5,11 @@ public class DropOffArea : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the collider belongs to a vehicle
-        if (other.CompareTag("Car")) // Assuming the vehicle has the "Car" tag
+        if (other.CompareTag("Car"))
         {
             DeliveryManager deliveryManager = DeliveryManager.Instance;
-
-            // Get the address of this house
             string houseAddress = transform.parent.GetComponent<House>().address;
 
-            // Deliver packages at this address
             List<Package> packagesToDeliver = new List<Package>();
             foreach (var package in deliveryManager.packages)
             {
@@ -38,12 +34,5 @@ public class DropOffArea : MonoBehaviour
                 deliveryManager.CheckAllPackagesDelivered();
             }
         }
-    }
-
-    public void OnPackageDelivered(Package package)
-    {
-        // Handle the delivery logic here
-        package.isDelivered = true;
-        Debug.Log($"Package delivered to {transform.parent.GetComponent<House>().address}");
     }
 }

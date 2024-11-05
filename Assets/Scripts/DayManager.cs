@@ -19,6 +19,14 @@ public class DayManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            AdvanceDay();
+        }
+    }
+
     public int GetPackageBonus()
     {
         switch (currentDay)
@@ -28,7 +36,7 @@ public class DayManager : MonoBehaviour
             case DayOfWeek.Tuesday:
                 return 0;  // Less busy
             case DayOfWeek.Wednesday:
-                return 5;  // Similar to Monday
+                return 4;  // Similar to Monday
             case DayOfWeek.Thursday:
                 return 2;  // Less busy
             case DayOfWeek.Friday:
@@ -43,4 +51,12 @@ public class DayManager : MonoBehaviour
         currentDay = (DayOfWeek)(((int)currentDay + 1) % 7);
         Debug.Log("New day: " + currentDay);
     }
+
+    public void AdvanceDay()
+    {
+        NextDay();
+        DeliveryManager.Instance.AdvanceDay();
+                                                
+    }
+
 }

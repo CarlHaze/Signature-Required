@@ -4,66 +4,64 @@ public class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; }
 
-    // Player properties
-    [SerializeField] private int money = 0; // Player's current money
-    [SerializeField] private int packagesDelivered = 0; // Total packages delivered
+    // Player statistics
+    [SerializeField] private int Money = 0;
+    [SerializeField] private int PackagesDelivered = 0;
+    [SerializeField] public int TotalPackagesDelivered = 0;
+
+    // Daily stats
+    private bool statsUpdatedForDay = false;
 
     private void Awake()
     {
-        // Ensure there's only one instance of Player
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Persist player across scenes
         }
         else
         {
             Destroy(gameObject);
         }
+
+        // Initialize player stats
+        Money = 0;
+        PackagesDelivered = 0;
+        TotalPackagesDelivered = 0;
     }
 
-    // Method to add money
-    public void AddMoney(int amount)
+    // Method to reset daily stats at the beginning of a new day
+    public void ResetDailyStats()
     {
-        if (amount > 0)
-        {
-            money += amount;
-            Debug.Log($"Money added: {amount}. Total money: {money}");
-        }
+        PackagesDelivered = 0; // Reset the number of packages delivered for today
+        statsUpdatedForDay = false; // Allow stats to be updated again
     }
 
-    // Method to deliver a package
+    // Method to update the player's money based on payments received
+    public void UpdateMoney(int amount)
+    {
+        Money += amount;
+        Debug.Log($"Player Money Updated: {Money}");
+    }
+
+    // Method to handle the delivery of a package
     public void DeliverPackage()
     {
-        packagesDelivered++;
-        Debug.Log($"Package delivered! Total packages delivered: {packagesDelivered}");
+        PackagesDelivered++;
+        TotalPackagesDelivered++;
+        Debug.Log($"Packages Delivered Today: {PackagesDelivered}, Total Delivered: {TotalPackagesDelivered}");
     }
 
-    // Method to get the current money
-    public int GetMoney()
+    // Method to check if stats have been updated for the day
+    public bool HasStatsBeenUpdatedForDay()
     {
-        return money;
+        return statsUpdatedForDay;
     }
 
-    // Method to get the total packages delivered
-    public int GetPackagesDelivered()
+    // Method to set the stats updated flag
+    public void SetStatsUpdatedForDay(bool updated)
     {
-        return packagesDelivered;
+        statsUpdatedForDay = updated;
     }
 
-    // Optional: Reset player's progress (for testing or restarting)
-    public void ResetProgress()
-    {
-        money = 0;
-        packagesDelivered = 0;
-        Debug.Log("Player progress reset.");
-    }
-
-    // Method to update player stats based on DeliveryManager data
-    public void UpdateStats(int totalCollected, int totalDelivered)
-    {
-        packagesDelivered = totalDelivered;
-        money = totalDelivered * 5;
-        Debug.Log($"Player stats updated. Total packages delivered: {packagesDelivered}, Total money: {money}");
-    }
+    // Additional methods can be added here to manage player interactions and stats
 }
