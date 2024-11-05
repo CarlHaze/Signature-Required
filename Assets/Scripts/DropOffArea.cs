@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DropOffArea : MonoBehaviour
@@ -13,18 +14,29 @@ public class DropOffArea : MonoBehaviour
             string houseAddress = transform.parent.GetComponent<House>().address;
 
             // Deliver packages at this address
+            List<Package> packagesToDeliver = new List<Package>();
             foreach (var package in deliveryManager.packages)
             {
                 if (!package.isDelivered && package.address == houseAddress)
                 {
-                    package.isDelivered = true; // Mark as delivered
-                    Debug.Log($"Delivered package to {houseAddress}");
-                    // Implement payment logic or any further action here
+                    packagesToDeliver.Add(package);
                 }
             }
 
-            // Check if all packages have been delivered after this delivery
-            deliveryManager.CheckAllPackagesDelivered();
+            if (packagesToDeliver.Count == 0)
+            {
+                Debug.Log($"No packages to deliver at address: {houseAddress}");
+            }
+            else
+            {
+                foreach (var package in packagesToDeliver)
+                {
+                    deliveryManager.DeliverPackage(package);
+                }
+
+                // Check if all packages have been delivered after this delivery
+                deliveryManager.CheckAllPackagesDelivered();
+            }
         }
     }
 

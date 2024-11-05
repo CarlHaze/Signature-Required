@@ -5,10 +5,16 @@ public class DeliveryManager : MonoBehaviour
 {
     public static DeliveryManager Instance { get; private set; }
     public List<Package> packages = new List<Package>();
-    public List<AddressPackages> addressPackages = new List<AddressPackages>();
 
     // New list to hold loaded addresses
     private List<string> loadedAddresses = new List<string>();
+
+    // Variables to track total collected and delivered packages
+    [SerializeField] private int TotalCollected = 0;
+    [SerializeField] private int TotalDelivered = 0;
+
+    // Boolean flag to track if all packages are delivered
+    private bool arePackagesDelivered = false;
 
     private void Awake()
     {
@@ -41,7 +47,6 @@ public class DeliveryManager : MonoBehaviour
                 {
                     loadedAddresses = addressList.addresses; // Store loaded addresses
                     Debug.Log($"{loadedAddresses.Count} addresses loaded successfully.");
-                    InitializeAddressPackages(); // Initialize address packages
                 }
                 else
                 {
@@ -59,28 +64,22 @@ public class DeliveryManager : MonoBehaviour
         }
     }
 
-    private void InitializeAddressPackages()
-    {
-        foreach (var address in loadedAddresses)
-        {
-            addressPackages.Add(new AddressPackages(address));
-        }
-    }
-
     private void GeneratePackages()
     {
-        int basePackageCount = Random.Range(15, 21);
+        int basePackageCount = Random.Range(1, 1);
         int bonusPackages = DayManager.Instance.GetPackageBonus();
         int totalPackages = basePackageCount + bonusPackages;
 
         packages.Clear();
+        TotalCollected = 0; // Reset collected count
+        TotalDelivered = 0; // Reset delivered count
+        arePackagesDelivered = false; // Reset the flag
 
         for (int i = 0; i < totalPackages; i++)
         {
             string address = GetRandomAddress();
             Package package = new Package(address); // Create a new package instance
             packages.Add(package);
-            UpdateAddressPackageCount(address); // Update package count for the address
         }
 
         Debug.Log($"Generated {packages.Count} packages for {DayManager.Instance.currentDay}");
@@ -98,27 +97,24 @@ public class DeliveryManager : MonoBehaviour
         return loadedAddresses[randomIndex];
     }
 
-    private void UpdateAddressPackageCount(string address)
-    {
-        var addressPackage = addressPackages.Find(ap => ap.address == address);
-        if (addressPackage != null)
-        {
-            addressPackage.numberOfPackages++;
-        }
-    }
-
     public void CollectPackages()
     {
         foreach (var package in packages)
         {
-            if (!package.isCollected)
+            if (!package.isCollected) // Only collect if the package hasn't been collected
             {
                 package.isCollected = true;
-                package.isDelivered = false;
+                package.isDelivered = false; // Ensure package is not marked as delivered when collected
+                TotalCollected++; // Increment collected count
                 Debug.Log($"Collected package at address: {package.address}");
             }
         }
+
+        // Optionally, check if all packages have been delivered after collecting packages
+        // You can remove this part if you don't want to check here
+        CheckAllPackagesDelivered();
     }
+
 
     public void AdvanceDay()
     {
@@ -135,7 +131,11 @@ public class DeliveryManager : MonoBehaviour
             // Use the dropOffArea reference to deliver the package
             targetHouse.dropOffArea.OnPackageDelivered(package);
             package.isDelivered = true;
+            TotalDelivered++; // Increment delivered count
             Debug.Log($"Delivered package to {package.address}");
+            packages.Remove(package); // Remove the delivered package from the list
+
+            CheckAllPackagesDelivered();
         }
         else
         {
@@ -171,27 +171,31 @@ public class DeliveryManager : MonoBehaviour
 
         if (allDelivered)
         {
-            Debug.Log("All packages have been delivered!");
-            // You can also trigger other actions here, such as updating the UI or advancing to the next day.
+            arePackagesDelivered = true; // Set the flag to true
+            Debug.Log("All packages have been delivered! Day's work is complete. Return to the Depot.");
         }
     }
 
+    public void UpdatePlayerStats()
+    {
+        if (arePackagesDelivered)
+        {
+            Player.Instance.UpdateStats(TotalCollected, TotalDelivered);
+        }
+        else
+        {
+            Debug.LogWarning("Not all packages have been delivered yet!");
+        }
+    }
+
+    public bool ArePackagesDelivered()
+    {
+        return arePackagesDelivered;
+    }
 }
 
 [System.Serializable]
 public class AddressList
 {
     public List<string> addresses; // List of addresses
-}
-
-[System.Serializable]
-public class AddressPackages
-{
-    public string address;
-    public int numberOfPackages = 0;
-
-    public AddressPackages(string address)
-    {
-        this.address = address;
-    }
 }
