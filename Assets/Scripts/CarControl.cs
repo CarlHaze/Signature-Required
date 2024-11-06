@@ -23,6 +23,8 @@ public class CarControl : MonoBehaviour
 
     public Light LeftBrakeLight;
     public Light RightBrakeLight;
+    public Light LeftReverseLight;
+    public Light RightReverseLight;
 
     // UI
     private UIManager uiManager;
@@ -59,6 +61,8 @@ public class CarControl : MonoBehaviour
         wheels = GetComponentsInChildren<WheelControl>();
         LeftBrakeLight.enabled = false;
         RightBrakeLight.enabled = false;
+        LeftReverseLight.enabled = false;
+        RightReverseLight.enabled = false;
 
         // Find the UIManager in the scene
         uiManager = FindFirstObjectByType<UIManager>();
@@ -72,13 +76,6 @@ public class CarControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        //// Ensure wheels are initialized
-        //if (wheels == null || wheels.Any(w => w.WheelCollider == null))
-        //{
-        //    wheels = GetComponentsInChildren<WheelControl>();
-        //    return; // Skip this frame to give Start() time to assign the colliders
-        //}
-
         // Separate input handling for acceleration/braking and steering
         float vInput = accelerateAction.ReadValue<float>() - brakeAction.ReadValue<float>();
         float hInput = steerAction.ReadValue<Vector2>().x;
@@ -130,9 +127,15 @@ public class CarControl : MonoBehaviour
                 }
                 wheel.WheelCollider.brakeTorque = 0;
             }
+            else if (isBraking)
+            {
+                // Apply brake torque immediately when braking
+                wheel.WheelCollider.brakeTorque = brakeTorque;
+                wheel.WheelCollider.motorTorque = 0;
+            }
             else
             {
-                wheel.WheelCollider.brakeTorque = brakeTorque;
+                wheel.WheelCollider.brakeTorque = 0;
                 wheel.WheelCollider.motorTorque = 0;
             }
         }
@@ -140,6 +143,8 @@ public class CarControl : MonoBehaviour
         // Update current speed
         currentSpeed = GetCurrentSpeed();
 
-       
+        // Enable reverse lights when reversing
+        LeftReverseLight.enabled = RightReverseLight.enabled = isReversing;
     }
+
 }
