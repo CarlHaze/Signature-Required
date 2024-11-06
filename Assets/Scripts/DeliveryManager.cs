@@ -111,7 +111,7 @@ public class DeliveryManager : MonoBehaviour
             {
                 package.isCollected = true;
                 TotalCollected++;
-                Debug.Log($"Collected package at address: {package.address}");
+                Debug.Log($"Collected package for: {package.address}");
             }
         }
         CheckAllPackagesDelivered();
@@ -119,6 +119,12 @@ public class DeliveryManager : MonoBehaviour
 
     public void DeliverPackage(Package package)
     {
+        if (!package.isCollected)
+        {
+            Debug.LogWarning($"Package at address {package.address} has not been collected yet.");
+            return;
+        }
+
         House targetHouse = FindHouseByAddress(package.address);
 
         if (targetHouse != null && targetHouse.dropOffArea != null)
@@ -134,6 +140,7 @@ public class DeliveryManager : MonoBehaviour
             Debug.LogWarning($"No house found for address: {package.address}");
         }
     }
+
 
     private House FindHouseByAddress(string address)
     {

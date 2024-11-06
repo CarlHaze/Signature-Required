@@ -15,7 +15,14 @@ public class DropOffArea : MonoBehaviour
             {
                 if (!package.isDelivered && package.address == houseAddress)
                 {
-                    packagesToDeliver.Add(package);
+                    if (package.isCollected)
+                    {
+                        packagesToDeliver.Add(package);
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"Package for address {package.address} has not been collected yet.");
+                    }
                 }
             }
 
