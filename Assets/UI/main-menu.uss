@@ -38,10 +38,8 @@
 }
 
 .unity-button:hover {
-    background-color: rgb(107, 143, 102);
-    transform: ;
+    background-color: rgb(107, 122, 102);
     box-shadow: 4px 4px 10px rgba(77, 90, 74, 0.5);
-    color: rgb(255, 255, 255);
 }
 
 .unity-text-element {

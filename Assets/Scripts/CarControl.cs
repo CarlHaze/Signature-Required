@@ -1,5 +1,6 @@
 using UnityEngine.InputSystem;
 using UnityEngine;
+using System.Linq;
 
 public class CarControl : MonoBehaviour
 {
@@ -71,6 +72,13 @@ public class CarControl : MonoBehaviour
 
     void FixedUpdate()
     {
+        //// Ensure wheels are initialized
+        //if (wheels == null || wheels.Any(w => w.WheelCollider == null))
+        //{
+        //    wheels = GetComponentsInChildren<WheelControl>();
+        //    return; // Skip this frame to give Start() time to assign the colliders
+        //}
+
         // Separate input handling for acceleration/braking and steering
         float vInput = accelerateAction.ReadValue<float>() - brakeAction.ReadValue<float>();
         float hInput = steerAction.ReadValue<Vector2>().x;
