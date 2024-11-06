@@ -54,9 +54,15 @@ public class DayManager : MonoBehaviour
 
     public void AdvanceDay()
     {
-        NextDay();
-        DeliveryManager.Instance.AdvanceDay();
-                                                
+        if (DeliveryManager.Instance.ArePackagesDelivered() || DeliveryManager.Instance.packages.Count == 0)
+        {
+            NextDay();
+            DeliveryManager.Instance.ResetForNewDay();
+            PaymentManager.Instance.UpdatePlayerMoney();
+        }
+        else
+        {
+            Debug.Log("Cannot advance to the next day. There are still packages to be delivered.");
+        }
     }
-
 }

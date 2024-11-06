@@ -4,12 +4,14 @@ using UnityEngine;
 public class DeliveryManager : MonoBehaviour
 {
     public static DeliveryManager Instance { get; private set; }
+
     public List<Package> packages = new List<Package>();
     private List<string> loadedAddresses = new List<string>();
 
     [SerializeField] private int TotalCollected = 0;
-    [SerializeField] private int TotalDelivered = 0;
-    private bool arePackagesDelivered = false;
+    public int TotalDelivered { get; private set; }
+
+    [SerializeField] private bool arePackagesDelivered = false;
 
     [SerializeField] private string currentDay;
 
@@ -115,29 +117,6 @@ public class DeliveryManager : MonoBehaviour
         CheckAllPackagesDelivered();
     }
 
-    public void AdvanceDay()
-    {
-        // Reset player's stats update flag at the start of the new day
-        Player.Instance.ResetDailyStats();
-
-        if (!Player.Instance.HasStatsBeenUpdatedForDay())
-        {
-            UpdatePlayerStats();
-            Player.Instance.SetStatsUpdatedForDay(true); // Set flag to true after updating stats
-        }
-
-        ResetDayStats();
-        GeneratePackages();
-        UpdateCurrentDay();
-    }
-
-    private void ResetDayStats()
-    {
-        TotalCollected = 0;
-        TotalDelivered = 0;
-        arePackagesDelivered = false;
-    }
-
     public void DeliverPackage(Package package)
     {
         House targetHouse = FindHouseByAddress(package.address);
@@ -178,46 +157,15 @@ public class DeliveryManager : MonoBehaviour
         }
     }
 
-    public void UpdatePlayerStats()
-    {
-        int packagesToDeliver = 0;
-
-        foreach (var package in packages)
-        {
-            if (package.isCollected && package.isDelivered)
-            {
-                packagesToDeliver++;
-            }
-        }
-
-        if (packagesToDeliver > 0)
-        {
-            // Ensure PaymentManager instance is available
-            if (PaymentManager.Instance != null)
-            {
-                PaymentManager.Instance.HandlePayment(packagesToDeliver);
-                PaymentManager.Instance.UpdatePackageDeliveredStats(packagesToDeliver);
-                Debug.Log($"Updated Player stats. Collected: {TotalCollected}, Delivered: {packagesToDeliver}");
-            }
-            else
-            {
-                Debug.LogError("PaymentManager instance not found.");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("No packages were both collected and delivered, so no update to Player stats.");
-        }
-
-        // Reset stats for the new day
-        TotalCollected = 0;
-        TotalDelivered = 0;
-    }
-
-
     public bool ArePackagesDelivered()
     {
         return arePackagesDelivered;
+    }
+
+    public void ResetForNewDay()
+    {
+        UpdateCurrentDay();
+        GeneratePackages();
     }
 
     private void UpdateCurrentDay()

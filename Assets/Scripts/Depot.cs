@@ -8,7 +8,6 @@ public class Depot : MonoBehaviour
         {
             // Allow collecting packages regardless of delivery status
             DeliveryManager.Instance.CollectPackages();
-            DeliveryManager.Instance.UpdatePlayerStats();
 
             // Check if all packages are delivered for feedback
             if (DeliveryManager.Instance.ArePackagesDelivered())
