@@ -5,12 +5,8 @@ public class Player : MonoBehaviour
     public static Player Instance { get; private set; }
 
     // Player statistics
-    public int Money = 0; // Total money aquired 
+    public int Money = 0; // Total money acquired 
     public int TotalPackagesDelivered = 0; // lifetime Packages delivered.
-    public int PackagesDelivered = 0; // Packages delivered in a day.
-
-    // Daily stats
-    private bool statsUpdatedForDay = false;
 
     private void Awake()
     {
@@ -22,8 +18,11 @@ public class Player : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
 
-
+    public void IncrementTotalPackagesDelivered()
+    {
+        TotalPackagesDelivered++;
+        Debug.Log($"Total packages delivered incremented to: {TotalPackagesDelivered}");
+    }
 }

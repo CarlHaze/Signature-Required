@@ -2294,7 +2294,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Money: 0
   TotalPackagesDelivered: 0
-  PackagesDelivered: 0
 --- !u!4 &1255408943
 Transform:
   m_ObjectHideFlags: 0
@@ -3507,7 +3506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30d3ad1d5bbf3bc4987ad1d442a4f398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentDay: 4
+  currentDay: 0
 --- !u!1 &1984357298
 GameObject:
   m_ObjectHideFlags: 0

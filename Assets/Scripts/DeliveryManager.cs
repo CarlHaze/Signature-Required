@@ -125,6 +125,7 @@ public class DeliveryManager : MonoBehaviour
         {
             package.isDelivered = true;
             TotalDelivered++;
+            Player.Instance.IncrementTotalPackagesDelivered();
             Debug.Log($"Delivered package to {package.address}");
             CheckAllPackagesDelivered();
         }
