@@ -12,15 +12,35 @@ public class PlayerAnimationController : MonoBehaviour
     private static readonly int Jump = Animator.StringToHash("Jump");
     private static readonly int JumpLeg = Animator.StringToHash("JumpLeg");
 
+    //
+    private static readonly int IsPunching = Animator.StringToHash("IsPunching"); // New parameterfor punching animation
+
     // Cached Character
 
     private Character _character;
+
+    // punch
+    private bool isPunching = false;
+
+    [SerializeField]
+    private Transform modelTransform; // Reference to the actual mesh/model transform
+
 
     private void Awake()
     {
         // Cache our Character
 
         _character = GetComponentInParent<Character>();
+        if (modelTransform == null)
+            modelTransform = transform.GetChild(0); // Assuming the model is the first child
+    
+    }
+
+    // Add this method to be called as an Animation Event at the end of the punch animation
+    public void OnPunchAnimationComplete()
+    {
+        isPunching = false;
+        _character.GetAnimator().SetBool(IsPunching, false);
     }
 
     private void Update()
@@ -34,6 +54,10 @@ public class PlayerAnimationController : MonoBehaviour
         // Compute input move vector in local space
 
         Vector3 move = transform.InverseTransformDirection(_character.GetMovementDirection());
+
+
+        // Get the direction the character is facing
+        Vector3 characterForward = transform.forward;
 
         // Update the animator parameters
 
@@ -58,5 +82,33 @@ public class PlayerAnimationController : MonoBehaviour
 
         if (_character.IsGrounded())
             animator.SetFloat(JumpLeg, jumpLeg);
+
+        // Handle punch input - add check for not crouched
+        if (Input.GetMouseButtonDown(0) &&
+            !isPunching &&
+            _character.IsGrounded() &&
+            !_character.IsCrouched())  // Add this check to prevent punch while crouched
+        {
+            isPunching = true;
+            modelTransform.forward = characterForward;
+            animator.SetBool(IsPunching, true);
+        }
+
+        // Handle rotation when not punching
+        if (!isPunching)
+        {
+            Vector3 moveDirection = _character.GetMovementDirection();
+            if (moveDirection.magnitude > 0.1f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+                modelTransform.rotation = Quaternion.Slerp(
+                    modelTransform.rotation,
+                    targetRotation,
+                    10f * deltaTime
+                );
+            }
+
+
+        }
     }
 }
