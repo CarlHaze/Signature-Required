@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 215901e4091e50b46937b1945fcefaa9
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 193614
+  packageName: Easy Character Movement 2
+  packageVersion: 1.4.2
+  assetPath: Assets/ECM2/Source/Components/CharacterMovement.cs.ORIGINAL
+  uploadId: 708441
