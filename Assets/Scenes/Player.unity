@@ -780,7 +780,7 @@ MonoBehaviour:
   maxHealth: 100
   Health: 0
   Stamina: 100
-  Strength: 100
+  Strength: 10
 --- !u!1001 &1414364133
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1028,19 +1028,19 @@ MonoBehaviour:
   _startingMovementMode: 1
   _maxWalkSpeed: 5
   _minAnalogWalkSpeed: 0
-  _maxAcceleration: 20
-  _brakingDecelerationWalking: 20
+  _maxAcceleration: 5
+  _brakingDecelerationWalking: 5
   _groundFriction: 8
   _canEverCrouch: 1
   _crouchedHeight: 1.25
-  _unCrouchedHeight: 2
-  _maxWalkSpeedCrouched: 3
+  _unCrouchedHeight: 1.8
+  _maxWalkSpeedCrouched: 1
   _maxFallSpeed: 40
   _brakingDecelerationFalling: 0
   _fallingLateralFriction: 0.3
   _airControl: 0.3
   _canEverJump: 1
-  _canJumpWhileCrouching: 1
+  _canJumpWhileCrouching: 0
   _jumpMaxCount: 1
   _jumpImpulse: 5
   _jumpMaxHoldTime: 0
@@ -1062,8 +1062,8 @@ MonoBehaviour:
   _enablePhysicsInteraction: 1
   _applyPushForceToCharacters: 1
   _applyStandingDownwardForce: 1
-  _mass: 1.5
-  _pushForceScale: 1
+  _mass: 2
+  _pushForceScale: 1.5
   _standingDownwardForceScale: 1
   _camera: {fileID: 0}
 --- !u!114 &1809858503
@@ -1081,11 +1081,11 @@ MonoBehaviour:
   _planeConstraint: 0
   _rootTransform: {fileID: 0}
   _rootTransformOffset: {x: 0, y: 0, z: 0}
-  _radius: 0.5
-  _height: 2
+  _radius: 0.3
+  _height: 1.8
   _slopeLimit: 45
   _stepOffset: 0.45
-  _perchOffset: 0.5
+  _perchOffset: 0
   _perchAdditionalHeight: 0.4
   _slopeLimitOverride: 0
   _useFlatTop: 0
@@ -1124,8 +1124,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.3
+  m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &1809858505
@@ -1136,7 +1136,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809858501}
   serializedVersion: 4
-  m_Mass: 1.5
+  m_Mass: 2
   m_Drag: 0
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1151,7 +1151,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1189,6 +1189,11 @@ MonoBehaviour:
   hitRecoveryTime: 0.5
   canBeHitWhileReacting: 0
   knockdownDuration: 10
+  recoverySpeed: 1.5
+  groundCheckDistance: 2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1001 &2011242425
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1348,6 +1353,10 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 1153021196}
+    - target: {fileID: 7813401780054765399, guid: 52da5d4d116c59842baf6393d5001b44, type: 3}
+      propertyPath: _pushForceScale
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7813401780054765399, guid: 52da5d4d116c59842baf6393d5001b44, type: 3}
       propertyPath: _canJumpWhileCrouching
       value: 0

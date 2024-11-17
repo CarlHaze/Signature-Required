@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private Animator animator;
     [SerializeField] private GameObject characterModel; // Reference to the X Bot model
     private Rigidbody rb;
+    private CapsuleCollider capsuleCollider;
 
     [Header("Animation Parameters")]
     private readonly int hitTriggerHash = Animator.StringToHash("Hit");
@@ -24,11 +25,18 @@ public class Enemy : MonoBehaviour, IDamageable
     private float hitReactionTimer = 0f;
 
     [Header("Knockdown Settings")]
-    [SerializeField] private float knockdownDuration = 10f;
+    [SerializeField] private float knockdownDuration = 2f;
+    [SerializeField] private float recoverySpeed = 1.5f;
     private readonly int knockdownTriggerHash = Animator.StringToHash("KnockDown");
-    private readonly int knockdownIndexHash = Animator.StringToHash("KnockdownIndex");
     private readonly int getUpTriggerHash = Animator.StringToHash("GetUp");
+    private readonly int isKnockedDownHash = Animator.StringToHash("IsKnockedDown");
+    private readonly int knockdownIndexHash = Animator.StringToHash("KnockdownIndex");
     private bool isKnockedDown = false;
+    private Coroutine knockdownCoroutine;
+
+    [Header("Physics Settings")]
+    [SerializeField] private float groundCheckDistance = 2f;
+    [SerializeField] private LayerMask groundLayer = -1; // Default to all layers
 
     private void Start()
     {
@@ -61,21 +69,35 @@ public class Enemy : MonoBehaviour, IDamageable
             return;
         }
 
-        // Verify animator parameters
-        bool hasAllParameters = true;
-        foreach (AnimatorControllerParameter param in animator.parameters)
+        // Get the capsule collider
+        capsuleCollider = GetComponent<CapsuleCollider>();
+        if (capsuleCollider == null)
         {
-            Debug.Log($"Found parameter: {param.name} of type {param.type}");
-        }
-
-        // Check for required collider
-        if (GetComponent<Collider>() == null)
-        {
-            Debug.LogError("No Collider found on NPC parent object! Please add a Collider component.");
+            Debug.LogError("No CapsuleCollider found on NPC parent object! Please add a CapsuleCollider component.");
             return;
         }
 
+        ValidateAnimatorParameters();
         Debug.Log($"Enemy initialized with {currentHealth} health. Using animator on {characterModel.name}");
+    }
+
+    private void ValidateAnimatorParameters()
+    {
+        if (animator != null)
+        {
+            // Validate all animator parameters exist
+            foreach (var parameter in animator.parameters)
+            {
+                if (parameter.name == "Hit" || parameter.name == "HitDirectionX" ||
+                    parameter.name == "HitDirectionZ" || parameter.name == "HitIntensity" ||
+                    parameter.name == "Knockdown" || parameter.name == "GetUp" ||
+                    parameter.name == "IsKnockedDown")
+                {
+                    continue;
+                }
+                Debug.LogWarning($"Missing animator parameter: {parameter.name} on {gameObject.name}");
+            }
+        }
     }
 
     private void Update()
@@ -100,7 +122,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
         if (currentHealth <= 0)
         {
-            HandleKnockdown();
+            TriggerKnockdown(hitPosition, 10f); // Example knockback force
         }
         else
         {
@@ -136,63 +158,148 @@ public class Enemy : MonoBehaviour, IDamageable
         isReacting = false;
     }
 
-    private void HandleKnockdown()
+    public void TriggerKnockdown(Vector3 knockbackDirection, float knockbackForce)
     {
-        Debug.Log($"HandleKnockdown called. Current health: {currentHealth}, IsKnockedDown: {isKnockedDown}");
-        if (animator != null && !isKnockedDown)
-        {
-            isKnockedDown = true;
+        if (isKnockedDown) return;
 
-            // Set random knockdown index (0 or 1)
-            float randomIndex = Random.Range(0, 2);
-            animator.SetFloat(knockdownIndexHash, randomIndex);
-            Debug.Log($"Knockdown trigger set. RandomIndex: {randomIndex}");
+        // Stop any existing knockdown sequence
+        if (knockdownCoroutine != null)
+            StopCoroutine(knockdownCoroutine);
 
-            // Trigger the knockdown
-            animator.SetTrigger(knockdownTriggerHash);
-
-            StartCoroutine(KnockdownSequence());
-        }
+        knockdownCoroutine = StartCoroutine(ImprovedKnockdownSequence(knockbackDirection, knockbackForce));
     }
 
-    private IEnumerator KnockdownSequence()
+    private IEnumerator ImprovedKnockdownSequence(Vector3 knockbackDirection, float knockbackForce)
     {
-        // Wait until near the end of the animation
-        AnimatorStateInfo stateInfo;
-        do
+        isKnockedDown = true;
+        animator.SetBool(isKnockedDownHash, true);
+        animator.SetTrigger(knockdownTriggerHash);
+
+        // Set blend tree parameter
+        animator.SetFloat(knockdownIndexHash, Random.Range(0, 2));
+
+        // Instantly restore health at start of knockdown
+        currentHealth = maxHealth;
+
+        // Apply knockback force with upward component
+        Vector3 adjustedKnockback = knockbackDirection.normalized + Vector3.up * 0.5f;
+        rb.AddForce(adjustedKnockback * knockbackForce, ForceMode.Impulse);
+
+        // Start adjusting capsule as soon as knockdown begins
+        float originalHeight = capsuleCollider.height;
+        Vector3 originalCenter = capsuleCollider.center;
+        float transitionDuration = 0.3f;
+        float elapsed = 0f;
+
+        // Smoothly transition capsule to lying position during knockdown
+        while (elapsed < transitionDuration)
         {
-            stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            elapsed += Time.deltaTime;
+            float t = elapsed / transitionDuration;
+
+            // Only change the capsule direction, maintain original height
+            capsuleCollider.direction = t > 0.5f ? 2 : 1; // Switch to Z-axis halfway through
+
+            // Adjust center position for the rotation
+            if (capsuleCollider.direction == 2) // If horizontal
+            {
+                capsuleCollider.center = new Vector3(0, 0.45f, 0); // Adjust this Y value to match your character
+            }
+            else // If vertical
+            {
+                capsuleCollider.center = originalCenter;
+            }
+
             yield return null;
-        } while (stateInfo.normalizedTime < 0.9f);
+        }
 
-        // Set the animator speed to 0 to freeze at the last frame
-        animator.speed = 0;
+        // Ground check and position adjustment
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, groundCheckDistance, groundLayer))
+        {
+            float startY = transform.position.y;
+            float targetY = hit.point.y;
+            float lerpTime = 0.1f;
+            elapsed = 0f;
 
-        // Wait for knockdown duration
+            while (elapsed < lerpTime)
+            {
+                elapsed += Time.deltaTime;
+                Vector3 newPos = transform.position;
+                newPos.y = Mathf.Lerp(startY, targetY, elapsed / lerpTime);
+                transform.position = newPos;
+                yield return null;
+            }
+        }
+
         yield return new WaitForSeconds(knockdownDuration);
 
-        // Resume animation speed and play get up
-        animator.speed = 1;
+        // Begin recovery
         animator.SetTrigger(getUpTriggerHash);
+        animator.speed = recoverySpeed;
 
-        // Wait for get up animation to complete
-        do
+        // Smoothly transition capsule back to standing position
+        elapsed = 0f;
+        while (elapsed < transitionDuration)
         {
-            stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-            yield return null;
-        } while (stateInfo.normalizedTime < 1.0f);
+            elapsed += Time.deltaTime;
+            float t = elapsed / transitionDuration;
 
-        // Reset state
+            // Switch back to vertical orientation
+            capsuleCollider.direction = t > 0.5f ? 1 : 2;
+
+            // Return to original center position
+            if (capsuleCollider.direction == 1) // If vertical
+            {
+                capsuleCollider.center = originalCenter;
+            }
+            else // If horizontal
+            {
+                capsuleCollider.center = new Vector3(0, 0.45f, 0);
+            }
+
+            yield return null;
+        }
+
+        // Wait for recovery animation to start
+        yield return new WaitUntil(() =>
+            animator.GetCurrentAnimatorStateInfo(0).IsName("GetUp"));
+
+        // Gradually restore control during recovery
+        float recoveryProgress = 0f;
+        while (recoveryProgress < 1f)
+        {
+            recoveryProgress += Time.deltaTime * recoverySpeed;
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            yield return null;
+        }
+
+        // Complete recovery
+        animator.speed = 1f;
+        animator.SetBool(isKnockedDownHash, false);
         isKnockedDown = false;
-        currentHealth = maxHealth;
-        Debug.Log($"Animation state: {stateInfo.normalizedTime:F2}");
     }
+
 
     private void OnValidate()
     {
         if (characterModel == null)
         {
-            Debug.LogWarning("Character Model not assigned on " + gameObject.name);
+            characterModel = GetComponentInChildren<Animator>()?.gameObject;
+            if (characterModel != null)
+            {
+                Debug.Log($"Auto-assigned character model to {characterModel.name}");
+            }
+            else
+            {
+                Debug.LogWarning("Character Model not assigned on " + gameObject.name);
+            }
+        }
+
+        // Validate ground check distance
+        if (groundCheckDistance <= 0)
+        {
+            groundCheckDistance = 2f;
         }
     }
 
