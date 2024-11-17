@@ -1,18 +1,11 @@
 fileFormatVersion: 2
-guid: 57d864d434bf457438558b799a4372ad
-AssetOrigin:
-  serializedVersion: 1
-  productId: 227377
-  packageName: Hand to Hand Set
-  packageVersion: 1.0
-  assetPath: Assets/Hand_to_Hand_Set/Art/Animations/H2H_KnockDown01.FBX
-  uploadId: 517422
+guid: a677ce702cd49ad45b36924958179265
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: H2H_KnockDown01
+    second: H2H_GetUp01
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -40,7 +33,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 0
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -49,11 +42,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: H2H_KnockDown01
+      name: H2H_GetUp01
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 58
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

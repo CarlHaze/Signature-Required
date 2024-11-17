@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-guid: 57d864d434bf457438558b799a4372ad
-AssetOrigin:
-  serializedVersion: 1
-  productId: 227377
-  packageName: Hand to Hand Set
-  packageVersion: 1.0
-  assetPath: Assets/Hand_to_Hand_Set/Art/Animations/H2H_KnockDown01.FBX
-  uploadId: 517422
+guid: b2f40cb3bdda5b9469d64f3828cc2ed8
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
@@ -40,7 +33,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 0
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
