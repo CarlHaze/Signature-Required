@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour, IDamageable
+public class NPCController : MonoBehaviour, IDamageable
 {
     public int maxHealth = 100;
     [SerializeField] private int currentHealth;
@@ -89,18 +89,35 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         if (animator != null)
         {
-            // Validate all animator parameters exist
-            foreach (var parameter in animator.parameters)
+            ValidateParameter("Hit", AnimatorControllerParameterType.Trigger);
+            ValidateParameter("HitDirectionX", AnimatorControllerParameterType.Float);
+            ValidateParameter("HitDirectionZ", AnimatorControllerParameterType.Float);
+            ValidateParameter("HitIntensity", AnimatorControllerParameterType.Float);
+            ValidateParameter("KnockDown", AnimatorControllerParameterType.Trigger);
+            ValidateParameter("GetUp", AnimatorControllerParameterType.Trigger);
+            ValidateParameter("IsKnockedDown", AnimatorControllerParameterType.Bool);
+            ValidateParameter("KnockdownIndex", AnimatorControllerParameterType.Float);
+        }
+    }
+
+    private void ValidateParameter(string paramName, AnimatorControllerParameterType expectedType)
+    {
+        bool found = false;
+        foreach (AnimatorControllerParameter param in animator.parameters)
+        {
+            if (param.name == paramName)
             {
-                if (parameter.name == "Hit" || parameter.name == "HitDirectionX" ||
-                    parameter.name == "HitDirectionZ" || parameter.name == "HitIntensity" ||
-                    parameter.name == "Knockdown" || parameter.name == "GetUp" ||
-                    parameter.name == "IsKnockedDown")
+                found = true;
+                if (param.type != expectedType)
                 {
-                    continue;
+                    Debug.LogError($"Parameter '{paramName}' exists but is of type {param.type} instead of expected {expectedType}");
                 }
-                Debug.LogWarning($"Missing animator parameter: {parameter.name} on {gameObject.name}");
+                break;
             }
+        }
+        if (!found)
+        {
+            Debug.LogError($"Missing animator parameter: '{paramName}' of type {expectedType} on {gameObject.name}");
         }
     }
 

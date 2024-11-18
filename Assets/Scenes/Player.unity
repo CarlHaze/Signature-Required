@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 34449577}
   - component: {fileID: 34449576}
   - component: {fileID: 34449575}
+  - component: {fileID: 34449579}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -228,6 +229,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &34449579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34449574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: c2760a7b38147f34598e2c49667c1570, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &93150305
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,9 +1034,10 @@ GameObject:
   - component: {fileID: 1809858506}
   - component: {fileID: 1809858505}
   - component: {fileID: 1809858504}
+  - component: {fileID: 1809858508}
   - component: {fileID: 1809858503}
   - component: {fileID: 1809858502}
-  - component: {fileID: 1809858507}
+  - component: {fileID: 1809858509}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -1127,7 +1161,7 @@ CapsuleCollider:
   m_Radius: 0.3
   m_Height: 1.8
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!54 &1809858505
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1171,7 +1205,28 @@ Transform:
   - {fileID: 2011242426}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1809858507
+--- !u!65 &1809858508
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809858501}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.3, y: 0.5, z: 1.8}
+  m_Center: {x: 0, y: 0.27, z: -1}
+--- !u!114 &1809858509
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1180,20 +1235,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1809858501}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7db058915a51b949a08caee52f55429, type: 3}
+  m_Script: {fileID: 11500000, guid: 28c2a7d68936baa4d837dc77a264121c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
   characterModel: {fileID: 1430803605}
+  boxCollider: {fileID: 1809858508}
   hitRecoveryTime: 0.5
   canBeHitWhileReacting: 0
-  knockdownDuration: 10
+  knockdownDuration: 2
   recoverySpeed: 1.5
   groundCheckDistance: 2
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
 --- !u!1001 &2011242425
 PrefabInstance:
   m_ObjectHideFlags: 0
