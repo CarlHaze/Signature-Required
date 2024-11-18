@@ -4,6 +4,7 @@ using ECM2;
 
 public class AILocomotion : MonoBehaviour
 {
+    [Header("References")]
     public Transform playerTransform;
     private NavMeshAgent agent;
     private Animator animator;
@@ -12,6 +13,17 @@ public class AILocomotion : MonoBehaviour
     [Header("Distance Thresholds")]
     public float walkDistance = 1f;
     public float runDistance = 5f;
+    public float sightRange = 15f;     // Distance to detect player
+    public LayerMask playerLayer;      // Layer for player detection
+
+    [Header("Patrol Settings")]
+    public float patrolWalkSpeed = 2f;
+    public float patrolRadius = 10f;   // Range for random patrol points
+    public float minPatrolWaitTime = 2f;
+    public float maxPatrolWaitTime = 5f;
+    private Vector3 patrolPoint;
+    private bool patrolPointSet;
+    private float patrolWaitTimer;
 
     [Header("Speed Settings")]
     public float walkSpeed = 3.5f;
@@ -21,26 +33,119 @@ public class AILocomotion : MonoBehaviour
     public float closeRotationSpeed = 720f;
     public float normalRotationSpeed = 120f;
     public float closeDistance = 2f;
-    public float facingThreshold = 30f; // Angle within which NPC is considered "facing" the player
+    public float facingThreshold = 30f;
 
     private bool isCloseToPlayer;
     private bool isFacingPlayer;
+    private bool playerInSightRange;
+
+    private float originalStoppingDistance; // Store the original stopping distance
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
         characterScript = GetComponent<Character>();
+        originalStoppingDistance = agent.stoppingDistance; // Store original distance
     }
 
     void Update()
     {
-        if (playerTransform == null) return;
+        // Simple distance check for sight range
+        playerInSightRange = false;
+        if (playerTransform != null)
+        {
+            float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+            playerInSightRange = distanceToPlayer <= sightRange;
+        }
+
+        // Only chase if player is in sight range, otherwise patrol
+        if (playerInSightRange)
+        {
+            ChasePlayer();
+        }
+        else
+        {
+            // Reset facing when losing sight of player
+            if (agent.velocity.magnitude < 0.1f)
+            {
+                Vector3 patrolDirection = (patrolPointSet ? patrolPoint - transform.position : transform.forward);
+                transform.rotation = Quaternion.LookRotation(patrolDirection);
+            }
+            Patrol();
+        }
+
+        // Update animator
+        UpdateAnimator(agent.velocity.magnitude);
+    }
+
+    void Patrol()
+    {
+        // Set stopping distance to smaller value for patrol
+        agent.stoppingDistance = 0.1f;
+
+        if (!patrolPointSet)
+        {
+            if (patrolWaitTimer <= 0)
+            {
+                SearchPatrolPoint();
+            }
+            else
+            {
+                // When waiting at patrol point, just go to idle
+                agent.isStopped = true;
+                agent.velocity = Vector3.zero;
+                animator.SetFloat("Forward", 0);
+                animator.SetFloat("Turn", 0);
+                patrolWaitTimer -= Time.deltaTime;
+            }
+        }
+        else
+        {
+            // Continue to patrol point
+            agent.isStopped = false;
+            agent.speed = patrolWalkSpeed;
+            agent.destination = patrolPoint;
+
+            float distanceToPoint = Vector3.Distance(transform.position, patrolPoint);
+            if (distanceToPoint < 1f)
+            {
+                // Set idle and wait
+                agent.isStopped = true;
+                agent.velocity = Vector3.zero;
+                animator.SetFloat("Forward", 0);
+                animator.SetFloat("Turn", 0);
+                patrolPointSet = false;
+                patrolWaitTimer = Random.Range(minPatrolWaitTime, maxPatrolWaitTime);
+                Debug.Log("Waiting for " + patrolWaitTimer + " seconds");
+            }
+        }
+    }
+
+    void SearchPatrolPoint()
+    {
+        // Calculate random point in range
+        float randomX = Random.Range(-patrolRadius, patrolRadius);
+        float randomZ = Random.Range(-patrolRadius, patrolRadius);
+
+        patrolPoint = transform.position + new Vector3(randomX, 0f, randomZ);
+
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(patrolPoint, out hit, patrolRadius, NavMesh.AllAreas))
+        {
+            patrolPoint = hit.position;
+            patrolPointSet = true;
+        }
+    }
+
+    void ChasePlayer()
+    {
+        // Restore original stopping distance for player chase
+        agent.stoppingDistance = originalStoppingDistance;
 
         float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
         isCloseToPlayer = distanceToPlayer <= closeDistance;
 
-        // Check if facing player
         Vector3 directionToPlayer = (playerTransform.position - transform.position).normalized;
         float angleToPlayer = Mathf.Abs(Vector3.SignedAngle(transform.forward, directionToPlayer, Vector3.up));
         isFacingPlayer = angleToPlayer <= facingThreshold;
@@ -63,43 +168,34 @@ public class AILocomotion : MonoBehaviour
             agent.isStopped = true;
             agent.velocity = Vector3.zero;
         }
-
-        // Update animator parameters
-        UpdateAnimator(distanceToPlayer);
     }
 
     void HandleRotation(float angleToPlayer, Vector3 directionToPlayer)
     {
-        // Rotate only if the angle exceeds a threshold
         if (Mathf.Abs(angleToPlayer) > 1f)
         {
             float rotationSpeed = closeRotationSpeed * Time.deltaTime;
             Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed);
 
-            // Normalize and smooth the turn parameter
             float normalizedTurn = Mathf.Clamp(angleToPlayer / 180f, -1f, 1f);
 
-            // Apply different turn multipliers based on angle severity
             if (Mathf.Abs(angleToPlayer) > 90f)
             {
-                normalizedTurn *= 0.75f; // Reduce sharp turns
+                normalizedTurn *= 0.75f;
             }
             else if (Mathf.Abs(angleToPlayer) > 45f)
             {
                 normalizedTurn *= 0.5f;
             }
 
-            // Smooth the turn animation
             animator.SetFloat("Turn", normalizedTurn, 0.15f, Time.deltaTime);
         }
         else
         {
-            // Smoothly return to zero
             animator.SetFloat("Turn", 0f, 0.15f, Time.deltaTime);
         }
     }
-
 
     void HandleMovementSpeed(float distanceToPlayer)
     {
@@ -141,9 +237,7 @@ public class AILocomotion : MonoBehaviour
 
         if (isCloseToPlayer)
         {
-            // When close, emphasize turning animations
             turnAmount *= 1.5f;
-
             if (Mathf.Abs(angleToPlayer) > 90f)
             {
                 turnAmount *= 2f;
@@ -152,40 +246,45 @@ public class AILocomotion : MonoBehaviour
             {
                 turnAmount *= 1.5f;
             }
-
-            // Reduce forward movement when turning sharply at close range
-            if (Mathf.Abs(angleToPlayer) > 45f)
-            {
-                forwardAmount *= 0.5f;
-            }
         }
 
         animator.SetFloat("Forward", Mathf.Abs(forwardAmount));
         animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
+
+        // If completely stopped, ensure we're in idle
+        if (agent.velocity.magnitude < 0.1f)
+        {
+            animator.SetFloat("Forward", 0);
+            animator.SetFloat("Turn", 0);
+        }
     }
 
     void OnDrawGizmosSelected()
     {
-        if (!Application.isPlaying) return;
+        // Draw sight range
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, sightRange);
 
+        // Draw other ranges
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, closeDistance);
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, walkDistance);
 
-        Gizmos.color = Color.yellow;
+        Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, runDistance);
 
-        // Visualize facing direction
-        if (isFacingPlayer)
+        // Draw patrol radius
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, patrolRadius);
+
+        // Draw current patrol point if set
+        if (patrolPointSet)
         {
-            Gizmos.color = Color.green;
+            Gizmos.color = Color.white;
+            Gizmos.DrawSphere(patrolPoint, 0.5f);
+            Gizmos.DrawLine(transform.position, patrolPoint);
         }
-        else
-        {
-            Gizmos.color = Color.red;
-        }
-        Gizmos.DrawRay(transform.position, transform.forward * 2f);
     }
 }

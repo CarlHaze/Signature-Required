@@ -500,7 +500,7 @@ Transform:
   m_GameObject: {fileID: 93150305}
   serializedVersion: 2
   m_LocalRotation: {x: 0.15212338, y: 0.0000000034767504, z: -5.3512217e-10, w: 0.98836154}
-  m_LocalPosition: {x: -0.82, y: 3.043529, z: -26.868586}
+  m_LocalPosition: {x: -0.82, y: 3.043529, z: -32.988583}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -718,7 +718,7 @@ Transform:
   m_GameObject: {fileID: 1153021194}
   serializedVersion: 2
   m_LocalRotation: {x: 0.15212338, y: 0.0000000034767504, z: -5.3512306e-10, w: 0.98836154}
-  m_LocalPosition: {x: -0.82, y: 3.043529, z: -26.868586}
+  m_LocalPosition: {x: -0.82, y: 3.043529, z: -32.988583}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -837,12 +837,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 559721812156752023, guid: 104c49449e45f8c45b2e5faa0f27ff1e, type: 3}
+      propertyPath: m_Speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 559721812156752023, guid: 104c49449e45f8c45b2e5faa0f27ff1e, type: 3}
       propertyPath: m_Height
       value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 559721812156752023, guid: 104c49449e45f8c45b2e5faa0f27ff1e, type: 3}
       propertyPath: m_Radius
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 559721812156752023, guid: 104c49449e45f8c45b2e5faa0f27ff1e, type: 3}
+      propertyPath: m_Acceleration
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 559721812156752023, guid: 104c49449e45f8c45b2e5faa0f27ff1e, type: 3}
       propertyPath: m_StoppingDistance
@@ -854,7 +862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1032695916527068416, guid: 104c49449e45f8c45b2e5faa0f27ff1e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.43
+      value: 0.528
       objectReference: {fileID: 0}
     - target: {fileID: 1032695916527068416, guid: 104c49449e45f8c45b2e5faa0f27ff1e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -901,6 +909,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3501946288394628607, guid: 104c49449e45f8c45b2e5faa0f27ff1e, type: 3}
+      propertyPath: _maxWalkSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3501946288394628607, guid: 104c49449e45f8c45b2e5faa0f27ff1e, type: 3}
       propertyPath: _rotationRate
       value: 420
       objectReference: {fileID: 0}
@@ -908,12 +920,28 @@ PrefabInstance:
       propertyPath: _canEverCrouch
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3501946288394628607, guid: 104c49449e45f8c45b2e5faa0f27ff1e, type: 3}
+      propertyPath: _maxAcceleration
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3501946288394628607, guid: 104c49449e45f8c45b2e5faa0f27ff1e, type: 3}
+      propertyPath: _brakingDecelerationWalking
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8016604152330859585, guid: 104c49449e45f8c45b2e5faa0f27ff1e, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 383b06586071e3f48901ce6551a6e8e0, type: 2}
     - target: {fileID: 9121351962781744041, guid: 104c49449e45f8c45b2e5faa0f27ff1e, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9121351962781744041, guid: 104c49449e45f8c45b2e5faa0f27ff1e, type: 3}
+      propertyPath: knockdownDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9121351962781744041, guid: 104c49449e45f8c45b2e5faa0f27ff1e, type: 3}
+      propertyPath: groundLayer.m_Bits
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -942,8 +970,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 1162003946}
-  walkDistance: 5
+  walkDistance: 0.5
   runDistance: 10
+  sightRange: 20
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  patrolWalkSpeed: 3.5
+  patrolRadius: 20
+  minPatrolWaitTime: 2
+  maxPatrolWaitTime: 5
   walkSpeed: 3.5
   runSpeed: 5
   closeRotationSpeed: 720
@@ -1094,7 +1130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 161202443250993396, guid: 52da5d4d116c59842baf6393d5001b44, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -22.1
+      value: -28.22
       objectReference: {fileID: 0}
     - target: {fileID: 161202443250993396, guid: 52da5d4d116c59842baf6393d5001b44, type: 3}
       propertyPath: m_LocalRotation.w
