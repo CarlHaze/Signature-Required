@@ -1,5 +1,6 @@
 using UnityEngine;
 using ECM2;
+
 public class PlayerAnimationController : MonoBehaviour
 {
     // Basic movement parameters
@@ -24,11 +25,57 @@ public class PlayerAnimationController : MonoBehaviour
     [SerializeField]
     private Transform modelTransform;
 
+    [SerializeField]
+    private PunchHitbox leftFistHitbox;
+
+    [SerializeField]
+    private PunchHitbox rightFistHitbox;
+
     private void Awake()
     {
         _character = GetComponentInParent<Character>();
         if (modelTransform == null)
             modelTransform = transform.GetChild(0);
+
+        // Optional: Add debug log just to confirm hitboxes are working
+        Debug.Log($"PlayerAnimationController initialized. Hitboxes will be used when punching.");
+    }
+
+    // Animation Event Methods
+    public void OnJabStart()
+    {
+        if (leftFistHitbox != null)
+        {
+            leftFistHitbox.EnableHitbox();
+            Debug.Log("Jab hitbox enabled");
+        }
+    }
+
+    public void OnJabEnd()
+    {
+        if (leftFistHitbox != null)
+        {
+            leftFistHitbox.DisableHitbox();
+            Debug.Log("Jab hitbox disabled");
+        }
+    }
+
+    public void OnStraightStart()
+    {
+        if (rightFistHitbox != null)
+        {
+            rightFistHitbox.EnableHitbox();
+            Debug.Log("Straight hitbox enabled");
+        }
+    }
+
+    public void OnStraightEnd()
+    {
+        if (rightFistHitbox != null)
+        {
+            rightFistHitbox.DisableHitbox();
+            Debug.Log("Straight hitbox disabled");
+        }
     }
 
     public void OnAttackAnimationComplete()
@@ -76,10 +123,6 @@ public class PlayerAnimationController : MonoBehaviour
             }
         }
 
-        // Calculate movement values
-        float forwardAmount = Mathf.InverseLerp(0.0f, _character.GetMaxSpeed(), _character.GetSpeed());
-        float turnAmount = Mathf.Atan2(move.x, move.z);
-
         // Handle movement and rotation
         if (!isAttacking)
         {
@@ -89,8 +132,8 @@ public class PlayerAnimationController : MonoBehaviour
 
                 if (_character.GetMovementDirection().magnitude > 0.1f)
                 {
-                    animator.SetFloat(Forward, forwardAmount, 0.1f, deltaTime);
-                    animator.SetFloat(Turn, turnAmount, 0.1f, deltaTime);
+                    animator.SetFloat(Forward, move.z, 0.1f, deltaTime);
+                    animator.SetFloat(Turn, move.x, 0.1f, deltaTime);
                 }
                 else
                 {
@@ -100,8 +143,8 @@ public class PlayerAnimationController : MonoBehaviour
             }
             else
             {
-                animator.SetFloat(Forward, forwardAmount, 0.1f, deltaTime);
-                animator.SetFloat(Turn, turnAmount, 0.1f, deltaTime);
+                animator.SetFloat(Forward, move.z, 0.1f, deltaTime);
+                animator.SetFloat(Turn, move.x, 0.1f, deltaTime);
 
                 Vector3 moveDirection = _character.GetMovementDirection();
                 if (moveDirection.magnitude > 0.1f)
@@ -124,7 +167,7 @@ public class PlayerAnimationController : MonoBehaviour
             animator.SetFloat(Jump, _character.GetVelocity().y, 0.1f, deltaTime);
 
         float runCycle = Mathf.Repeat(animator.GetCurrentAnimatorStateInfo(0).normalizedTime + 0.2f, 1.0f);
-        float jumpLeg = (runCycle < 0.5f ? 1.0f : -1.0f) * forwardAmount;
+        float jumpLeg = (runCycle < 0.5f ? 1.0f : -1.0f) * move.z;
 
         if (_character.IsGrounded())
             animator.SetFloat(JumpLeg, jumpLeg);
@@ -137,4 +180,6 @@ public class PlayerAnimationController : MonoBehaviour
         modelTransform.forward = transform.forward;
         animator.SetTrigger(triggerParameter);
     }
+
+
 }
