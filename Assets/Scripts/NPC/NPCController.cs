@@ -34,6 +34,7 @@ public class NPCController : MonoBehaviour, IDamageable
     private readonly int knockdownIndexHash = Animator.StringToHash("KnockdownIndex");
     private bool isKnockedDown = false;
     private Coroutine knockdownCoroutine;
+    public bool IsKnockedDown => isKnockedDown;
 
     [Header("Physics Settings")]
     [SerializeField] private float groundCheckDistance = 2f;
