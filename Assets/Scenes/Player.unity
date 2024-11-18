@@ -892,6 +892,14 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3501946288394628607, guid: 104c49449e45f8c45b2e5faa0f27ff1e, type: 3}
+      propertyPath: _canEverJump
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3501946288394628607, guid: 104c49449e45f8c45b2e5faa0f27ff1e, type: 3}
+      propertyPath: _canEverCrouch
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8016604152330859585, guid: 104c49449e45f8c45b2e5faa0f27ff1e, type: 3}
       propertyPath: m_Controller
       value: 
@@ -926,6 +934,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 1162003946}
+  walkDistance: 1
+  runDistance: 5
+  walkSpeed: 2
+  runSpeed: 5
 --- !u!1 &1537520560
 GameObject:
   m_ObjectHideFlags: 0
