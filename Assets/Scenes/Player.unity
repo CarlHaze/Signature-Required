@@ -1242,6 +1242,10 @@ PrefabInstance:
       propertyPath: rightHandBone
       value: 
       objectReference: {fileID: 2077912387}
+    - target: {fileID: 8797434269846284713, guid: 52da5d4d116c59842baf6393d5001b44, type: 3}
+      propertyPath: combatModeMaxSpeed
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6129412432145541827, guid: 52da5d4d116c59842baf6393d5001b44, type: 3}
     m_RemovedGameObjects: []
