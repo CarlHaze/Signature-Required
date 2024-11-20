@@ -9,6 +9,10 @@
 [Mm]emoryCaptures/
 [Rr]ecordings/
 
+# Third Party Assets
+[Aa]ssets/Third[Pp]arty/*
+!Assets/Third[Pp]arty/*.meta
+
 # Never ignore Asset meta data
 !*.meta
 
@@ -33,6 +37,12 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
+
+# Rider
+.idea/
+*.sln.iml
+*.iws
+.idea_modules/
 
 # Unity3D generated meta files
 *.pidb.meta
