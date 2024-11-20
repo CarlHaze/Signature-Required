@@ -1,0 +1,702 @@
+fileFormatVersion: 2
+guid: 2e18fa6ce99661f4c9813f056290b4a8
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144071
+  packageName: Animal pack deluxe v2
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe v2/Meshes/Cane_corso/cane_corso_skeleton.fbx
+  uploadId: 305234
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: backAnkle_L
+  - first:
+      1: 100002
+    second: backAnkle_R
+  - first:
+      1: 100004
+    second: backHip_L
+  - first:
+      1: 100006
+    second: backHip_R
+  - first:
+      1: 100008
+    second: backKnee_L
+  - first:
+      1: 100010
+    second: backKnee_R
+  - first:
+      1: 100012
+    second: backRump_L
+  - first:
+      1: 100014
+    second: backRump_R
+  - first:
+      1: 100016
+    second: backToes_L
+  - first:
+      1: 100018
+    second: backToes_R
+  - first:
+      1: 100020
+    second: //RootNode
+  - first:
+      1: 100022
+    second: Chest_M
+  - first:
+      1: 100024
+    second: Ear02_L
+  - first:
+      1: 100026
+    second: Ear02_R
+  - first:
+      1: 100028
+    second: Ear_L
+  - first:
+      1: 100030
+    second: Ear_R
+  - first:
+      1: 100032
+    second: frontAnkle_L
+  - first:
+      1: 100034
+    second: frontAnkle_R
+  - first:
+      1: 100036
+    second: frontHip_L
+  - first:
+      1: 100038
+    second: frontHip_R
+  - first:
+      1: 100040
+    second: frontKnee_L
+  - first:
+      1: 100042
+    second: frontKnee_R
+  - first:
+      1: 100044
+    second: frontRump_L
+  - first:
+      1: 100046
+    second: frontRump_R
+  - first:
+      1: 100048
+    second: frontToes_L
+  - first:
+      1: 100050
+    second: frontToes_R
+  - first:
+      1: 100052
+    second: Head_M
+  - first:
+      1: 100054
+    second: Jaw_M
+  - first:
+      1: 100056
+    second: joint1
+  - first:
+      1: 100058
+    second: miko8
+  - first:
+      1: 100060
+    second: Neck_M
+  - first:
+      1: 100062
+    second: NeckPart1_M
+  - first:
+      1: 100064
+    second: NeckPart2_M
+  - first:
+      1: 100066
+    second: NeckPart3_M
+  - first:
+      1: 100068
+    second: polySurface1
+  - first:
+      1: 100070
+    second: polySurface13
+  - first:
+      1: 100072
+    second: polySurface45
+  - first:
+      1: 100074
+    second: polySurface46
+  - first:
+      1: 100076
+    second: polySurface9
+  - first:
+      1: 100078
+    second: Root_M
+  - first:
+      1: 100080
+    second: RootPart1_M
+  - first:
+      1: 100082
+    second: Spine1_M
+  - first:
+      1: 100084
+    second: Spine1Part1_M
+  - first:
+      1: 100086
+    second: Tail0_M
+  - first:
+      1: 100088
+    second: Tail1_M
+  - first:
+      1: 100090
+    second: Tail2_M
+  - first:
+      1: 100092
+    second: Tail3_M
+  - first:
+      1: 100094
+    second: Tail4_M
+  - first:
+      1: 100096
+    second: Tail5_M
+  - first:
+      1: 100098
+    second: Tail6_M
+  - first:
+      4: 400000
+    second: backAnkle_L
+  - first:
+      4: 400002
+    second: backAnkle_R
+  - first:
+      4: 400004
+    second: backHip_L
+  - first:
+      4: 400006
+    second: backHip_R
+  - first:
+      4: 400008
+    second: backKnee_L
+  - first:
+      4: 400010
+    second: backKnee_R
+  - first:
+      4: 400012
+    second: backRump_L
+  - first:
+      4: 400014
+    second: backRump_R
+  - first:
+      4: 400016
+    second: backToes_L
+  - first:
+      4: 400018
+    second: backToes_R
+  - first:
+      4: 400020
+    second: //RootNode
+  - first:
+      4: 400022
+    second: Chest_M
+  - first:
+      4: 400024
+    second: Ear02_L
+  - first:
+      4: 400026
+    second: Ear02_R
+  - first:
+      4: 400028
+    second: Ear_L
+  - first:
+      4: 400030
+    second: Ear_R
+  - first:
+      4: 400032
+    second: frontAnkle_L
+  - first:
+      4: 400034
+    second: frontAnkle_R
+  - first:
+      4: 400036
+    second: frontHip_L
+  - first:
+      4: 400038
+    second: frontHip_R
+  - first:
+      4: 400040
+    second: frontKnee_L
+  - first:
+      4: 400042
+    second: frontKnee_R
+  - first:
+      4: 400044
+    second: frontRump_L
+  - first:
+      4: 400046
+    second: frontRump_R
+  - first:
+      4: 400048
+    second: frontToes_L
+  - first:
+      4: 400050
+    second: frontToes_R
+  - first:
+      4: 400052
+    second: Head_M
+  - first:
+      4: 400054
+    second: Jaw_M
+  - first:
+      4: 400056
+    second: joint1
+  - first:
+      4: 400058
+    second: miko8
+  - first:
+      4: 400060
+    second: Neck_M
+  - first:
+      4: 400062
+    second: NeckPart1_M
+  - first:
+      4: 400064
+    second: NeckPart2_M
+  - first:
+      4: 400066
+    second: NeckPart3_M
+  - first:
+      4: 400068
+    second: polySurface1
+  - first:
+      4: 400070
+    second: polySurface13
+  - first:
+      4: 400072
+    second: polySurface45
+  - first:
+      4: 400074
+    second: polySurface46
+  - first:
+      4: 400076
+    second: polySurface9
+  - first:
+      4: 400078
+    second: Root_M
+  - first:
+      4: 400080
+    second: RootPart1_M
+  - first:
+      4: 400082
+    second: Spine1_M
+  - first:
+      4: 400084
+    second: Spine1Part1_M
+  - first:
+      4: 400086
+    second: Tail0_M
+  - first:
+      4: 400088
+    second: Tail1_M
+  - first:
+      4: 400090
+    second: Tail2_M
+  - first:
+      4: 400092
+    second: Tail3_M
+  - first:
+      4: 400094
+    second: Tail4_M
+  - first:
+      4: 400096
+    second: Tail5_M
+  - first:
+      4: 400098
+    second: Tail6_M
+  - first:
+      43: 4300000
+    second: polySurface1
+  - first:
+      43: 4300002
+    second: polySurface9
+  - first:
+      43: 4300004
+    second: polySurface46
+  - first:
+      43: 4300006
+    second: polySurface13
+  - first:
+      43: 4300008
+    second: polySurface45
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: polySurface1
+  - first:
+      137: 13700002
+    second: polySurface13
+  - first:
+      137: 13700004
+    second: polySurface45
+  - first:
+      137: 13700006
+    second: polySurface46
+  - first:
+      137: 13700008
+    second: polySurface9
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: default4
+    second: {fileID: 2100000, guid: 77268d306ee8a464481511299b5bbf77, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 1
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 1
+    maxBonesPerVertex: 8
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 0
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: cane_corso_skeleton(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: miko8
+      parentName: cane_corso_skeleton(Clone)
+      position: {x: -0, y: -3.384723e-17, z: 0.15243459}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 0.32593802, y: 0.32593802, z: 0.32593802}
+    - name: polySurface1
+      parentName: miko8
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: polySurface9
+      parentName: miko8
+      position: {x: 0.0000013294277, y: 0.44588837, z: -0.14163002}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 3.068068, y: 3.068068, z: 3.068068}
+    - name: polySurface46
+      parentName: miko8
+      position: {x: -0.0000013958992, y: -1.4656456, z: -3.2911878}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 3.068068, y: 3.068068, z: 3.068068}
+    - name: polySurface13
+      parentName: miko8
+      position: {x: -0.0000006979496, y: -1.44411, z: -3.5311284}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 3.068068, y: 3.068068, z: 3.068068}
+    - name: polySurface45
+      parentName: miko8
+      position: {x: -0.0000013826048, y: -1.8575876, z: -3.32488}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 3.068068, y: 3.068068, z: 3.068068}
+    - name: Root_M
+      parentName: cane_corso_skeleton(Clone)
+      position: {x: -7.412387e-24, y: 0.5763899, z: -0.07571983}
+      rotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: backRump_R
+      parentName: Root_M
+      position: {x: 0.06779082, y: 0.07571983, z: -0.0893737}
+      rotation: {x: -0.19608624, y: 0.9783412, z: -0.05612714, w: -0.035332326}
+      scale: {x: 1, y: 1, z: 1}
+    - name: backHip_R
+      parentName: backRump_R
+      position: {x: -0.12947051, y: -2.1316282e-16, z: -3.907985e-16}
+      rotation: {x: 0.0019414327, y: -0.013310929, z: 0.1443125, w: 0.98944074}
+      scale: {x: 1, y: 1, z: 1}
+    - name: backKnee_R
+      parentName: backHip_R
+      position: {x: -0.24545275, y: 1.1368684e-15, z: 1.0658141e-16}
+      rotation: {x: 0.004811494, y: 0.01584672, z: -0.028254908, w: 0.99946356}
+      scale: {x: 1, y: 1, z: 1}
+    - name: backAnkle_R
+      parentName: backKnee_R
+      position: {x: -0.17926066, y: 3.5527135e-16, z: 5.7376326e-15}
+      rotation: {x: 0.06889478, y: -0.14633577, z: -0.63258904, w: 0.75741035}
+      scale: {x: 1, y: 1, z: 1}
+    - name: backToes_R
+      parentName: backAnkle_R
+      position: {x: -0.061053634, y: 0.047354277, z: 5.6488144e-15}
+      rotation: {x: 0.7139308, y: -0.6996346, z: -0.0014241412, w: 0.02849957}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tail0_M
+      parentName: Root_M
+      position: {x: 0.14078407, y: -0.08931137, z: -9.126286e-18}
+      rotation: {x: -0.42726934, y: 0.90412444, z: -2.5611762e-16, w: 1.2103556e-16}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tail1_M
+      parentName: Tail0_M
+      position: {x: -0.09866044, y: 4.2632563e-16, z: 2.0651064e-17}
+      rotation: {x: 0, y: 0, z: -0.17132418, w: 0.9852147}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tail2_M
+      parentName: Tail1_M
+      position: {x: -0.10107082, y: 2.842171e-16, z: 2.3906793e-10}
+      rotation: {x: -0.0000000016811269, y: -0.00000001514467, z: -0.11032688, w: 0.99389535}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tail3_M
+      parentName: Tail2_M
+      position: {x: -0.063162, y: -2.1316282e-16, z: 1.1297132e-10}
+      rotation: {x: 0, y: 0, z: 0.06577887, w: 0.9978342}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tail4_M
+      parentName: Tail3_M
+      position: {x: -0.074680015, y: 2.842171e-16, z: 2.0400465e-10}
+      rotation: {x: 0, y: 0, z: 0.13655768, w: 0.9906322}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tail5_M
+      parentName: Tail4_M
+      position: {x: -0.05530881, y: -7.105427e-16, z: 3.6547035e-10}
+      rotation: {x: -0.0000000012203999, y: 0.000000015798276, z: 0.07701947, w: 0.9970296}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tail6_M
+      parentName: Tail5_M
+      position: {x: -0.03884191, y: -1.4210854e-16, z: 3.2101666e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RootPart1_M
+      parentName: Root_M
+      position: {x: -0.12136272, y: 2.4312613e-10, z: -2.4312585e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spine1_M
+      parentName: RootPart1_M
+      position: {x: -0.12136272, y: 2.431257e-10, z: -4.862517e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spine1Part1_M
+      parentName: Spine1_M
+      position: {x: -0.13084601, y: -0.000000007861573, z: 0.000000008342663}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest_M
+      parentName: Spine1Part1_M
+      position: {x: -0.13084601, y: -0.000000007861574, z: 0.000000016685325}
+      rotation: {x: -0, y: 0.000000059604645, z: 0.125687, w: 0.99206996}
+      scale: {x: 1, y: 1, z: 1}
+    - name: frontRump_R
+      parentName: Chest_M
+      position: {x: -0.06903888, y: 0.06231255, z: -0.08664982}
+      rotation: {x: -0.32432976, y: 0.7251809, z: -0.21203665, w: -0.56917787}
+      scale: {x: 1, y: 1, z: 1}
+    - name: frontHip_R
+      parentName: frontRump_R
+      position: {x: -0.10598091, y: 1.3500312e-15, z: -2.842171e-16}
+      rotation: {x: -0.0043964377, y: 0.095758446, z: 0.03585086, w: 0.99474907}
+      scale: {x: 1, y: 1, z: 1}
+    - name: frontKnee_R
+      parentName: frontHip_R
+      position: {x: -0.16119319, y: 5.32907e-16, z: 4.973799e-16}
+      rotation: {x: 0.0012270795, y: 0.017419491, z: -0.03872171, w: 0.99909747}
+      scale: {x: 1, y: 1, z: 1}
+    - name: frontAnkle_R
+      parentName: frontKnee_R
+      position: {x: -0.299168, y: 2.1316282e-16, z: -3.2329693e-15}
+      rotation: {x: 0.21687813, y: -0.01341352, z: 0.1701075, w: 0.9611698}
+      scale: {x: 1, y: 1, z: 1}
+    - name: frontToes_R
+      parentName: frontAnkle_R
+      position: {x: -0.0764491, y: 0.04245787, z: 1.4210854e-16}
+      rotation: {x: -0.70315534, y: 0.71043754, z: -0.017183602, w: -0.023574032}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Neck_M
+      parentName: Chest_M
+      position: {x: -0.12333765, y: -2.2026825e-15, z: -1.6770497e-16}
+      rotation: {x: -0.00000006158518, y: -0.000000077389856, z: 0.21354651, w: 0.9769329}
+      scale: {x: 1, y: 1, z: 1}
+    - name: NeckPart1_M
+      parentName: Neck_M
+      position: {x: -0.071328335, y: -1.065814e-15, z: 0.000000007468536}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: NeckPart2_M
+      parentName: NeckPart1_M
+      position: {x: -0.071328335, y: -9.947598e-16, z: 0.000000007468536}
+      rotation: {x: -0.000000007656389, y: 0.000000024203409, z: -0.2646957, w: 0.964332}
+      scale: {x: 1, y: 1, z: 1}
+    - name: NeckPart3_M
+      parentName: NeckPart2_M
+      position: {x: -0.071328335, y: -7.105427e-16, z: 0.000000007468536}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head_M
+      parentName: NeckPart3_M
+      position: {x: -0.071328335, y: -1.2079227e-15, z: 0.000000007468536}
+      rotation: {x: -0.000000086881776, y: -0.000000025071078, z: 0.2772528, w: 0.960797}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Jaw_M
+      parentName: Head_M
+      position: {x: 0.035366807, y: 0.06812088, z: 0.00000001923708}
+      rotation: {x: 0.000000118460854, y: -0.000000011081232, z: -0.78748786, w: 0.6163302}
+      scale: {x: 1, y: 1, z: 1}
+    - name: joint1
+      parentName: Jaw_M
+      position: {x: -0.006929112, y: -0.035284664, z: 0.0000000087708045}
+      rotation: {x: 0.70707744, y: -0.006456153, z: -0.70707726, w: -0.0064561544}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ear_R
+      parentName: Head_M
+      position: {x: -0.09359471, y: 0.017608669, z: -0.0874728}
+      rotation: {x: 0.07141014, y: 0.25803122, z: -0.05490762, w: 0.9619281}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ear02_R
+      parentName: Ear_R
+      position: {x: -0.049694512, y: 0, z: 1.2789769e-15}
+      rotation: {x: 0, y: -0.16412672, z: -0, w: 0.9864393}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ear_L
+      parentName: Head_M
+      position: {x: -0.09359472, y: 0.017608633, z: 0.087472685}
+      rotation: {x: -0.2580315, y: 0.07141009, z: 0.961928, w: 0.054907646}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ear02_L
+      parentName: Ear_L
+      position: {x: 0.049694512, y: -1.4210854e-16, z: 1.4210854e-16}
+      rotation: {x: 0, y: -0.16412672, z: -0, w: 0.9864393}
+      scale: {x: 1, y: 1, z: 1}
+    - name: frontRump_L
+      parentName: Chest_M
+      position: {x: -0.069038905, y: 0.062312555, z: 0.08664975}
+      rotation: {x: 0.7251808, y: 0.32432976, z: 0.5691779, w: -0.21203661}
+      scale: {x: 1, y: 1, z: 1}
+    - name: frontHip_L
+      parentName: frontRump_L
+      position: {x: 0.10598091, y: -4.973799e-16, z: -1.0658141e-16}
+      rotation: {x: -0.004396424, y: 0.09575823, z: 0.03585087, w: 0.99474907}
+      scale: {x: 1, y: 1, z: 1}
+    - name: frontKnee_L
+      parentName: frontHip_L
+      position: {x: 0.16119319, y: -7.81597e-16, z: -1.7763567e-16}
+      rotation: {x: 0.0012272451, y: 0.017419536, z: -0.038721483, w: 0.99909747}
+      scale: {x: 1, y: 1, z: 1}
+    - name: frontAnkle_L
+      parentName: frontKnee_L
+      position: {x: 0.299168, y: -7.81597e-16, z: 2.5224266e-15}
+      rotation: {x: 0.21687812, y: -0.013413586, z: 0.17010751, w: 0.96116984}
+      scale: {x: 1, y: 1, z: 1}
+    - name: frontToes_L
+      parentName: frontAnkle_L
+      position: {x: 0.0764491, y: -0.04245787, z: -0.0000000048952087}
+      rotation: {x: -0.70315534, y: 0.7104376, z: -0.01718358, w: -0.023574056}
+      scale: {x: 1, y: 1, z: 1}
+    - name: backRump_L
+      parentName: Root_M
+      position: {x: 0.06779082, y: 0.07571983, z: 0.0893737}
+      rotation: {x: 0.9783413, y: 0.19608621, z: 0.035332255, w: -0.056127097}
+      scale: {x: 1, y: 1, z: 1}
+    - name: backHip_L
+      parentName: backRump_L
+      position: {x: 0.12947051, y: 2.1316282e-16, z: 5.1514347e-16}
+      rotation: {x: 0.0019414327, y: -0.013310929, z: 0.1443125, w: 0.98944074}
+      scale: {x: 1, y: 1, z: 1}
+    - name: backKnee_L
+      parentName: backHip_L
+      position: {x: 0.24545275, y: 0, z: 8.8817837e-17}
+      rotation: {x: 0.004811527, y: 0.015846767, z: -0.028254898, w: 0.99946356}
+      scale: {x: 1, y: 1, z: 1}
+    - name: backAnkle_L
+      parentName: backKnee_L
+      position: {x: 0.17926066, y: -1.065814e-15, z: -5.5777602e-15}
+      rotation: {x: 0.06889471, y: -0.1463358, z: -0.6325891, w: 0.7574104}
+      scale: {x: 1, y: 1, z: 1}
+    - name: backToes_L
+      parentName: backAnkle_L
+      position: {x: 0.061053634, y: -0.047354277, z: -5.755396e-15}
+      rotation: {x: 0.7139308, y: -0.6996346, z: -0.0014241412, w: 0.02849957}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: miko8
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

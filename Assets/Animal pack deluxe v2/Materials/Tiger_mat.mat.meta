@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 121c7907e7088a545bcca8d434a9b398
+timeCreated: 1543763498
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144071
+  packageName: Animal pack deluxe v2
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe v2/Materials/Tiger_mat.mat
+  uploadId: 305234

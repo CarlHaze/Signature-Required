@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 82256c0c702b3f646a45296943d2d805
+timeCreated: 1544552274
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144071
+  packageName: Animal pack deluxe v2
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe v2/Meshes/Hellenic_hound/Materials/hellenic_hound_col8.mat
+  uploadId: 305234

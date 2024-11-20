@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: b1c498527cda9b14ab458a07bfb4d082
+timeCreated: 1544554904
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144071
+  packageName: Animal pack deluxe v2
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe v2/Prefabs/Domestic_pig.prefab
+  uploadId: 305234

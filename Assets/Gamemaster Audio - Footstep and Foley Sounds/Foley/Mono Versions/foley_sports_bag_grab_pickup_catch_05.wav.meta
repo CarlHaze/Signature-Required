@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+guid: bc371ea6b44df8245abe01fbfe7cf430
+timeCreated: 1489394200
+licenseType: Store
+AudioImporter:
+  serializedVersion: 6
+  defaultSettings:
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 1
+    conversionMode: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  preloadAudioData: 1
+  loadInBackground: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 85360
+  packageName: Footstep and Foley Sounds
+  packageVersion: 1.0
+  assetPath: Assets/Gamemaster Audio - Footstep and Foley Sounds/Foley/Mono Versions/foley_sports_bag_grab_pickup_catch_05.wav
+  uploadId: 167312

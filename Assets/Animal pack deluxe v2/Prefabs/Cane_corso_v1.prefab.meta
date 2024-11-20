@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 8c27136eafd8ee344909900f3eca6563
+timeCreated: 1544554832
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144071
+  packageName: Animal pack deluxe v2
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe v2/Prefabs/Cane_corso_v1.prefab
+  uploadId: 305234

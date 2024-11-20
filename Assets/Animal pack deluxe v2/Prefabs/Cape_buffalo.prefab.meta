@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 8d7180383a22f6d41b699c6e9c62f5ca
+timeCreated: 1544554863
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144071
+  packageName: Animal pack deluxe v2
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe v2/Prefabs/Cape_buffalo.prefab
+  uploadId: 305234

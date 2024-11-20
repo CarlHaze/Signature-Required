@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: e75250311c4fa28438a06b0cf03401df
+timeCreated: 1551086912
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144071
+  packageName: Animal pack deluxe v2
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe v2/Materials/Bat_mat.mat
+  uploadId: 305234

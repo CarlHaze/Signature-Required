@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 7e5409ba0ed93284fba8bc5300f40d35
+timeCreated: 1552140026
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144071
+  packageName: Animal pack deluxe v2
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe v2/Meshes/Green_lizard/Materials/default.mat
+  uploadId: 305234

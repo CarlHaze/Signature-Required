@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 003aa4e055e43b3468622b5a59180e4b
+timeCreated: 1554280164
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144071
+  packageName: Animal pack deluxe v2
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe v2/Animation controllers/Green_lizard_anim_controller.controller
+  uploadId: 305234

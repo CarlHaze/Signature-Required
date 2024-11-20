@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 8deaadd6253d8e349811356ed5fdce8a
+timeCreated: 1544553653
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144071
+  packageName: Animal pack deluxe v2
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe v2/Meshes/Mud_pig/Materials/mud_pig_col8.mat
+  uploadId: 305234

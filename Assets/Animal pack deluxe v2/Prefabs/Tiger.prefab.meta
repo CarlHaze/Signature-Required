@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 986bf2adff6c99942bde016d59bfffbb
+timeCreated: 1544555131
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144071
+  packageName: Animal pack deluxe v2
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe v2/Prefabs/Tiger.prefab
+  uploadId: 305234
