@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 50c8588461fd58145b488e51255f6de2
+timeCreated: 1544550285
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144071
+  packageName: Animal pack deluxe v2
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe v2/Meshes/Beagle/Materials/default3.mat
+  uploadId: 305234

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: f4edb870ed0890a4694f728a07b517a8
+timeCreated: 1544549887
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144071
+  packageName: Animal pack deluxe v2
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe v2/Animation controllers/Hellenic_hound_anim_controller.controller
+  uploadId: 305234

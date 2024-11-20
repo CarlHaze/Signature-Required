@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: afb844e6eaa3af048b8ab373297dac3b
+timeCreated: 1544555372
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144071
+  packageName: Animal pack deluxe v2
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe v2/Animation controllers/Horse_anim_controller.controller
+  uploadId: 305234

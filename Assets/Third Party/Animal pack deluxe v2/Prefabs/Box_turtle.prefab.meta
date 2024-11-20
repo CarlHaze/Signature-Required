@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 8706e285e909814428a06e315d63c882
+timeCreated: 1554278665
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144071
+  packageName: Animal pack deluxe v2
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe v2/Prefabs/Box_turtle.prefab
+  uploadId: 305234

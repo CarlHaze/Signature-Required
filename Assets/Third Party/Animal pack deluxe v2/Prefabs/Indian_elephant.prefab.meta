@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 214105edbff8f1849be44f0c91cfab67
+timeCreated: 1544555022
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144071
+  packageName: Animal pack deluxe v2
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe v2/Prefabs/Indian_elephant.prefab
+  uploadId: 305234

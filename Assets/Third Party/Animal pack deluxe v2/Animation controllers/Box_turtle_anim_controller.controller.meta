@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 0b032bbef401c55419a905be51f2a344
+timeCreated: 1554279911
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144071
+  packageName: Animal pack deluxe v2
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe v2/Animation controllers/Box_turtle_anim_controller.controller
+  uploadId: 305234

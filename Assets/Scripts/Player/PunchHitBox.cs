@@ -14,11 +14,17 @@ public class PunchHitbox : MonoBehaviour
 
     private void Awake()
     {
-        // Add BoxCollider component if it doesn't exist
-        hitboxCollider = gameObject.AddComponent<BoxCollider>();
+        // Get existing BoxCollider component
+        hitboxCollider = GetComponent<BoxCollider>();
+
+        if (hitboxCollider == null)
+        {
+            Debug.LogError($"BoxCollider component missing on {gameObject.name}! Please add a BoxCollider component.");
+            return;
+        }
+
         hitboxCollider.isTrigger = true;
         hitboxCollider.enabled = false;
-        hitboxCollider.size = new Vector3(0.2f, 0.2f, 0.2f);
 
         // Determine punch type based on object name or parent
         if (gameObject.name.Contains("Left") || transform.parent?.name.Contains("Left") == true)
@@ -69,7 +75,6 @@ public class PunchHitbox : MonoBehaviour
 
             // Call the enhanced TakeDamage method
             damageable.TakeDamage(damage, hitPosition, isJabPunch);
-
             Debug.Log($"Hit landed on {other.gameObject.name} for {damage} damage! Punch type: {(isJabPunch ? "Jab" : "Straight")}");
         }
     }
@@ -82,7 +87,6 @@ public class PunchHitbox : MonoBehaviour
             Gizmos.color = isActive ?
                 (isJabPunch ? Color.red : Color.blue) :
                 (isJabPunch ? new Color(1, 0.5f, 0.5f) : new Color(0.5f, 0.5f, 1));
-
             Gizmos.matrix = transform.localToWorldMatrix;
             Gizmos.DrawWireCube(hitboxCollider.center, hitboxCollider.size);
         }

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 76c47105896b5004e9c5af86ff589ad1
+timeCreated: 1554279935
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144071
+  packageName: Animal pack deluxe v2
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe v2/Animation controllers/Cat_anim_controller.controller
+  uploadId: 305234

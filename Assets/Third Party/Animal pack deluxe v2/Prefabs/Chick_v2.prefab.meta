@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 399d6fae143485e489d680bdbb41e3da
+timeCreated: 1554278729
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144071
+  packageName: Animal pack deluxe v2
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe v2/Prefabs/Chick_v2.prefab
+  uploadId: 305234

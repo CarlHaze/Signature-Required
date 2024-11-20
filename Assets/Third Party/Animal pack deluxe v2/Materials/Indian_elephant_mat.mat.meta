@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: c883e1cff259fea4d9cb03d2772c10b2
+timeCreated: 1543763135
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144071
+  packageName: Animal pack deluxe v2
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe v2/Materials/Indian_elephant_mat.mat
+  uploadId: 305234

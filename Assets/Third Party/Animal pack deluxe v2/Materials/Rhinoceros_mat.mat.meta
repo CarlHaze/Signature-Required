@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 8da8a6b2c31b4e54aacb704e3102b47c
+timeCreated: 1543763449
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144071
+  packageName: Animal pack deluxe v2
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe v2/Materials/Rhinoceros_mat.mat
+  uploadId: 305234
